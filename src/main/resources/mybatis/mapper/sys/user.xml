@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cj.demo.sys.mapper.UserMapper">
+    <!-- 根据用户id获取用户数据 -->
+    <select id="getUserByUserId" parameterType="java.lang.String" resultType="com.cj.demo.sys.model.User">
+        select * from sys_user where user_id = #{userId}
+    </select>
+
+    <!--  -->
+    <select id="userLogin"  resultType="com.cj.demo.sys.model.User">
+        select * from sys_user where user_id = #{0} and user_pass = #{1}
+    </select>
+
+</mapper>
