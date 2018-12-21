@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
 
@@ -42,7 +42,7 @@
                     <h3 class="panel-title">请登录</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form">
+                    <form role="form" name="loginForm" onkeydown='if(event.keyCode==13){submitForm();}'>
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" placeholder="用户名" name="userName" type="text" autofocus>
@@ -55,12 +55,14 @@
                                     <input name="remember" type="checkbox" value="Remember Me">记住密码
                                 </label>
                             </div>
-                            <#if status != "0">
-                                <div class="alert alert-danger">${errorMsg}</div>
-                            </#if>
+
+                            <div class="alert alert-danger" id="errMsg" style="display:none">
+
+                            </div>
 
                             <!-- Change this to a button or input when using this as a form -->
-                            <a href="index.html" class="btn btn-lg btn-success btn-block">登录</a>
+                            <a href="javascript:;"  onclick='submitForm()' class="btn btn-lg btn-success btn-block">登录</a>
+
 
                         </fieldset>
                     </form>
@@ -81,6 +83,8 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="${basePath}/dist/js/sb-admin-2.js"></script>
+<script src="${basePath}/js/common.js"></script>
+<script src="${basePath}/js/login.js"></script>
 
 </body>
 

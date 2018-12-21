@@ -9,7 +9,7 @@
 
     <!--  -->
     <select id="userLogin"  resultType="com.cj.demo.sys.model.User">
-        select * from sys_user where user_id = #{0} and user_pass = #{1}
+        select * from sys_user where user_name = #{arg0} and user_pass = #{arg1}
     </select>
 
 </mapper>

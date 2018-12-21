@@ -4,9 +4,11 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
+import com.cj.demo.common.Filter.SessionFilter;
 import com.cj.demo.common.Interceptor.BasePathInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -31,6 +33,25 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new HttpMessageConverters(converter);
     }
 
+    /**
+     * 注册过滤器
+     * @return
+     */
+    @Bean
+    public FilterRegistrationBean someFilterRegistration1() {
+        //新建过滤器注册类
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        // 添加我们写好的过滤器
+        registration.setFilter( new SessionFilter());
+        // 设置过滤器的URL模式
+        registration.addUrlPatterns("/*");
+        return registration;
+    }
+
+    /**
+     * 注册拦截器
+     * @return
+     */
     @Bean
     public BasePathInterceptor getBasePathInterceptor() {
         return new BasePathInterceptor();
@@ -45,4 +66,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         // 拦截配置
         addInterceptor.addPathPatterns("/**");
     }
+
 }
