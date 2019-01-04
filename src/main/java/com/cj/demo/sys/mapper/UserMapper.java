@@ -4,21 +4,26 @@ import com.cj.demo.sys.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository("userMapper")
 public interface UserMapper {
     public void insertUser(User user);
 
-    /**
-     * 根据用户id获取用户信息
-     * @param userId    用户
-     * @return
-     */
-    public User getUserByUserId(String userId);
+    public void deleteUser(String userId);
 
     public void updateUser(User user);
 
-    public void deleteUserByUserId(String userId);
+    public User selectUser(String userId);
+
+    /**
+     * 根据条件查询用户
+     * @param user
+     * @return
+     */
+    public List<User> getUser(User user);
+
 
     /**
      * 用户登录查询

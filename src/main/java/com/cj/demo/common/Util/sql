@@ -1,0 +1,47 @@
+-- auto-generated definition
+create table SYS_SWITCH
+(
+  K_CODE      varchar(50) default '' not null comment '编号',
+  V_NAME      varchar(50)            null comment '名称',
+  SWITCH_TYPE int                    null comment '类型',
+  P_CODE      varchar(50)            null comment '父编号',
+  G_ID        varchar(50) default '' not null comment '组编号',
+  SORT_MUN    int                    null,
+  primary key (K_CODE, G_ID)
+)
+  comment '配置表';
+
+-- auto-generated definition
+create table SYS_SWITCH_GROUP
+(
+  G_ID     varchar(50) not null comment '组ID'
+    primary key,
+  G_NAME   varchar(50) not null comment '组名称',
+  P_ID     varchar(50) null comment '组父ID',
+  SORT_NUM varchar(50) null comment '排序'
+)
+  comment '配置组开关';
+
+-- auto-generated definition
+create table SYS_USER
+(
+  USER_ID         char(32)                                   not null comment '唯一id,32随机生产uuid'
+    primary key,
+  USER_NAME       varchar(32)                                not null comment '用户名',
+  USER_PASS       varchar(32)                                not null comment '用户密码',
+  USER_GENDER     char                                       null comment '性别',
+  USER_REALNAME   varchar(32)                                null comment '真名',
+  USER_IDCODE     char(18)                                   null comment '身份证',
+  USER_PHONE      varchar(20)                                null comment '电话',
+  USER_EMAIL      varchar(64)                                null comment '邮箱',
+  USER_STATUS     char(6)          default '000000'          null comment '用户状态，待审批：000000，禁用：999999，冻结：222222，锁定：333333，删除：911111，可用：111111，审批不通过：999000，未生效：111000，待激活：111110',
+  USER_CREATE     timestamp                                  null comment '用户创建时间',
+  USER_UPDATE     timestamp        default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment '用户更新时间',
+  USER_PASSCHANGE char(6)          default '111111'          null comment '强制修改密码，000000:不强制，111111:强制',
+  USER_PASSEXP    timestamp                                  null comment '密码过期日期',
+  USER_LOGINNO    int(11) unsigned default 0                 null comment '登录次数，默认0',
+  USER_LASTADDR   varchar(100)                               null comment '登录地址',
+  USER_LASTIP     varchar(128)                               null comment '登录ip',
+  USER_ERRORCOUNT int(11) unsigned default 0                 null comment '登录错误次数'
+);
+

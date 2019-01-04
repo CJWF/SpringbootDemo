@@ -2,14 +2,109 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cj.demo.sys.mapper.UserMapper">
-    <!-- 根据用户id获取用户数据 -->
-    <select id="getUserByUserId" parameterType="java.lang.String" resultType="com.cj.demo.sys.model.User">
-        select * from sys_user where user_id = #{userId}
+
+    <resultMap id="user" type="com.cj.demo.sys.model.User">
+        <id column="USER_ID" property="userId" />
+        <result column="USER_NAME" property="userName" />
+        <result column="USER_PASS" property="userPass" />
+        <result column="USER_GENDER" property="userGender" />
+        <result column="USER_REALNAME" property="userRealName" />
+        <result column="USER_IDCODE" property="userIdcode" />
+        <result column="USER_PHONE" property="userPhone" />
+        <result column="USER_EMAIL" property="userEmail" />
+        <result column="USER_STATUS" property="userStatus" />
+        <result column="USER_CREATE" property="userCreate" />
+        <result column="USER_UPDATE" property="userUpdate" />
+        <result column="USER_PASSCHANGE" property="passChange" />
+        <result column="USER_PASSEXP" property="passExp" />
+        <result column="USER_LOGINNO" property="loginNo" />
+        <result column="USER_LASTADDR" property="lastAddr" />
+        <result column="USER_LASTIP" property="lastIp" />
+        <result column="USER_ERRORCOUNT" property="ErrorCount" />
+    </resultMap>
+
+    <sql id="get_where_if">
+        1 = 1
+        <if test="userId != null">
+            and USER_ID = #{userId}
+        </if>
+        <if test="userName != null">
+            and USER_NAME = #{userName}
+        </if>
+        <if test="userPass != null">
+            and USER_PASS = #{userPass}
+        </if>
+        <if test="userRealName != null">
+            and USER_REALNAME = #{userRealName}
+        </if>
+        <if test="userIdcode != null">
+            and USER_IDCODE = #{userIdcode}
+        </if>
+        <if test="userPhone != null">
+            and USER_PHONE = #{userPhone}
+        </if>
+        <if test="userEmail != null">
+            and USER_EMAIL = #{userEmail}
+        </if>
+        <if test="userStatus != null">
+            and USER_STATUS = #{userStatus}
+        </if>
+        <if test="userCreate != null">
+            and USER_UPDATE = #{userCreate}
+        </if>
+        <if test="passChange != null">
+            and USER_PASSCHANGE = #{passChange}
+        </if>
+        <if test="passExp != null">
+            and USER_PASSEXP = #{passExp}
+        </if>
+        <if test="loginNo != null">
+            and USER_LOGINNO = #{loginNo}
+        </if>
+        <if test="lastAddr != null">
+            and USER_LASTADDR = #{lastAddr}
+        </if>
+        <if test="lastIp != null">
+            and USER_LASTIP = #{lastIp}
+        </if>
+        <if test="ErrorCount != null">
+            and USER_ERRORCOUNT = #{ErrorCount}
+        </if>
+    </sql>
+
+    <!-- 新增 -->
+    <select id="insertUser" parameterType="com.cj.demo.sys.model.User" >
+        insert into SYS_USER values (#{userId},#{userName},#{userPass},#{userGender},#{userRealName},#{userIdcode},#{userPhone},#{userEmail},#{userStatus},#{userCreate},#{userUpdate},#{passChange},#{passExp},#{loginNo},#{lastAddr},#{lastIp},#{ErrorCount})
     </select>
+
+    <!-- 根据组id删除 -->
+    <select id="deleteUser" parameterType="java.lang.String" >
+        delete from SYS_USER where G_ID = #{userId}
+    </select>
+
+    <!-- 修改 -->
+    <select id="updateUser" parameterType="com.cj.demo.sys.model.User" >
+        update SYS_USER set USER_ID=#{userId},USER_NAME=#{userName},USER_PASS=#{userPass},USER_GENDER=#{userGender},USER_REALNAME=#{userRealName},USER_IDCODE=#{userIdcode},USER_PHONE=#{userPhone},USER_EMAIL=#{userEmail},USER_STATUS=#{userStatus},USER_CREATE=#{userCreate},USER_UPDATE=#{userUpdate},USER_PASSCHANGE=#{passChange},USER_PASSEXP=#{passExp},USER_LOGINNO=#{loginNo},USER_LASTADDR=#{lastAddr},USER_LASTIP=#{lastIp},USER_ERRORCOUNT=#{ErrorCount} where USER_ID = #{userId}
+    </select>
+
+    <!-- 查询 -->
+    <select id="selectUser" parameterType="java.lang.String" resultType="com.cj.demo.sys.model.User">
+        select * from SYS_USER where user_id = #{userId}
+
+    </select>
+
+    <!-- 根据用户id获取用户数据 -->
+    <select id="getUser" parameterType="java.lang.String" resultType="com.cj.demo.sys.model.User">
+        select * from SYS_USER
+        <where>
+            <include refid="get_where_if"/>
+        </where>
+    </select>
+
 
     <!--  -->
     <select id="userLogin"  resultType="com.cj.demo.sys.model.User">
-        select * from sys_user where user_name = #{arg0} and user_pass = #{arg1}
+        select * from SYS_USER where user_name = #{arg0} and user_pass = #{arg1}
     </select>
 
 </mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cj.demo.sys.mapper.SwitchGroupMapper">
+
+    <resultMap id="switchGroup" type="com.cj.demo.sys.model.SwitchGroup">
+        <id column="G_ID" property="gId" />
+        <result column="G_NAME" property="gName" />
+        <result column="P_ID" property="pId" />
+        <result column="SORT_NUM" property="sortNum" />
+    </resultMap>
+
+    <!-- 新增 -->
+    <select id="insertSwitchGroup" parameterType="com.cj.demo.sys.model.SwitchGroup" >
+        insert into SYS_SWITCH_GROUP values (#{gId}, #{gName}, #{pId}, #{sortNum});
+    </select>
+
+    <!-- 根据组id删除 -->
+    <select id="deleteSwitchGroup" parameterType="java.lang.String" >
+        delete from SYS_SWITCH_GROUP where G_ID = #{gId}
+    </select>
+
+    <!-- 修改 -->
+    <select id="updateSwitchGroup" parameterType="com.cj.demo.sys.model.SwitchGroup" >
+        update SYS_SWITCH_GROUP set G_NAME = #{gName}, P_ID = #{pId}, SORT_NUM = #{sortNum} where G_ID = #{gId}
+    </select>
+
+    <!-- 查询 -->
+    <select id="selectSwitchGroup" parameterType="java.lang.String" resultType="com.cj.demo.sys.model.SwitchGroup">
+        select * from SYS_SWITCH_GROUP where G_ID = #{gId}
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="getSwitchGroup"  resultMap="switchGroup">
+        select * from SYS_SWITCH_GROUP
+    </select>
+
+</mapper>

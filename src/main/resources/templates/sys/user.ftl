@@ -52,11 +52,12 @@
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
+                            <th>用户名</th>
+                            <th>用户性别</th>
+                            <th>电话</th>
+                            <th>邮箱</th>
+                            <th>初始化</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>

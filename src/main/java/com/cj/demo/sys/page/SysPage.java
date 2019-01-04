@@ -16,8 +16,8 @@ public class SysPage {
 
     @RequestMapping("user")
     public String getView(Map<String,Object> map) {
-        User user = userMapper.getUserByUserId("1");
-        System.out.println(user);
+        //User user = userMapper.getUserByUserId("1");
+        //System.out.println(user);
         return "/sys/user";
     }
 }

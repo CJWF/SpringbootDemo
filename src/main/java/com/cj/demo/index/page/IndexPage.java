@@ -1,8 +1,10 @@
 package com.cj.demo.index.page;
 
+import com.cj.demo.sys.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
