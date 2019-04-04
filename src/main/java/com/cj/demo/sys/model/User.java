@@ -1,5 +1,6 @@
 package com.cj.demo.sys.model;
 
+
 public class User {
     private String userId;          //用户id
     private String userName;        //用户名

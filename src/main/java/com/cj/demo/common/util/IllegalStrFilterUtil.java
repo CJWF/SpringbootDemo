@@ -1,4 +1,4 @@
-package com.cj.demo.common.Util;
+package com.cj.demo.common.util;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

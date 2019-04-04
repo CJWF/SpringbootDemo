@@ -1,6 +1,6 @@
 package com.cj.demo.common.aspect;
 
-import com.cj.demo.common.Util.IllegalStrFilterUtil;
+import com.cj.demo.common.util.IllegalStrFilterUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -28,7 +28,7 @@ public class CheckInputParameterAspect {
     /**
      * 定义切入点:拦截controller层所有方法
      */
-    @Pointcut("execution(* com.compass.yu.controller..*(..))")
+    @Pointcut("execution(* com.cj.demo.sys.controller..*(..))")
     public void params() {
     }
 
@@ -53,6 +53,9 @@ public class CheckInputParameterAspect {
             Logger.info(UNVALIDATED_INPUT);
             new RuntimeException(ERORR_INPUT);
         }
+
+
+
         Object result = joinPoint.proceed();
         Logger.info("当前调用接口-[" + request.getRequestURL() + "]");
         return result;
